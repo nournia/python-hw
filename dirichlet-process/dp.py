@@ -1,5 +1,6 @@
 from math import *
 import numpy as np
+np.random.seed(1)
 
 # laad data
 file = open('students.dat')
@@ -71,7 +72,6 @@ for itr in range(1, iterations+1):
 	# print results
 	clusters = makeClusters()
 	print
-	for label, items in clusters.iteritems():
-		print '{:.2f} -> {}'.format(label, items)
+	for label in sorted(clusters.iterkeys()):
+		print '{:.2f} -> {}'.format(label, clusters[label])
 	print 'iteration: {}, clusters: {}, temperature: {}'.format(itr, len(clusters), T)
-
