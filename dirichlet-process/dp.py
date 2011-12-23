@@ -1,6 +1,3 @@
-
-# todo: email for multinomial distribution and effect of T on it, i think T damages the distribution
-
 from math import *
 import numpy as np
 
@@ -15,8 +12,8 @@ Y = np.array(data)
 # labels
 X = len(Y) * [Y.mean()]
 
-# G0 ~ N(muG, sigmaG) # best guess of G
-muG, sigmaG = Y.mean(), Y.std()
+# parameters
+muG, sigmaG = Y.mean(), Y.std() # G0 ~ N(muG, sigmaG) # best guess of G
 A0 = 0.01 # strength of belief that G0 is G
 
 def makeClusters(): # make cluster dictionary from data and labels
@@ -39,18 +36,26 @@ def A(y):
 def getLabelOfNewCluster(y, mu0):
 	return np.random.normal((mu0 + y)/2, 2**-.5) # sample Gausian distribution
 
-# iterations
-for itr in range(1, 10):
+# iteration
+iterations = 20
+for itr in range(1, iterations+1):
 	clusters = makeClusters()
+
+	#update temperature
+	T = .3 + np.random.uniform(5.*itr/iterations, (10.*itr/iterations)**2)
+	# print T; continue
 
 	# update X[i] in n+1 way using the multinomial selector
 	for i in range(len(Y)):
 		probabilites = [] # of each condition
 		for label, items in clusters.iteritems():
 			probabilites.append(phi(Y[i] - label))
-		probabilites.append(A(Y[i]))
+		probabilites.append(A(Y[i])**T)
 		probabilites = np.array(probabilites)
 
+		# simulated annealing effect
+		# probabilites = probabilites**T
+		
 		# sum of probabilites equals to 1
 		probabilites /= probabilites.sum()
 		
@@ -65,7 +70,8 @@ for itr in range(1, 10):
 
 	# print results
 	clusters = makeClusters()
-	print '\n'
+	print
 	for label, items in clusters.iteritems():
 		print '{:.2f} -> {}'.format(label, items)
-	print 'iteration: {}, clusters: {}'.format(itr, len(clusters))
+	print 'iteration: {}, clusters: {}, temperature: {}'.format(itr, len(clusters), T)
+
