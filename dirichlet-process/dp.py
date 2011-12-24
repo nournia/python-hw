@@ -1,6 +1,6 @@
 from math import *
 import numpy as np
-np.random.seed(1)
+# np.random.seed(1)
 
 # laad data
 file = open('students.dat')
