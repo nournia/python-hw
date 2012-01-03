@@ -8,20 +8,21 @@ I selected first three classifiers and implemented this homework with **python**
 + Simple (No Kernel, C = 5)
 + Polynomial (Order 3)
 + RBF (Sigma = 0.1)
+<br />
 
 a)
 
 + *Linear:*
 
-![](linear.png)
+<img src="linear.png" height="400"></img>
 
 + *Polynomial:*
 
-![](poly.png)
+<img src="poly.png" height="400"></img>
 
 + *RBF:*
 
-![](rbf.png)
+<img src="rbf.png" height="400"></img>
 
 b)
 
