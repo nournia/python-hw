@@ -3,13 +3,11 @@
 *Alireza Nourian*
 <br />
 
-I selected first three classifiers:
+I selected first three classifiers and implemented this homework with **python** using **scikit-learn** package. Classifiers:
 
 + Simple (No Kernel, C = 5)
 + Polynomial (Order 3)
 + RBF (Sigma = 0.1)
-
-I implemented this homework with *python* using *scikit-learn* package.
 
 a)
 
